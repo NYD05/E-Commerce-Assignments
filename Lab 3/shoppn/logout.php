@@ -1,0 +1,15 @@
+<?php
+// logout.php — clear the session and go back to the home page.
+require_once __DIR__ . '/core/core.php';
+
+$_SESSION = [];
+
+if (ini_get('session.use_cookies')) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
+
+session_destroy();
+
+redirect(BASE_URL . '/index.php');
