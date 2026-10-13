@@ -1,0 +1,358 @@
+/* css/style.css — Shoppn site styles. Bold blue theme, rounded corners, footer pinned to the bottom. */
+
+:root {
+    --blue:        #1d4ed8;   /* main bold blue */
+    --blue-dark:   #1e3a8a;   /* header / footer */
+    --blue-hover:  #1e40af;
+    --blue-light:  #dbeafe;
+    --text:        #0f172a;
+    --muted:       #64748b;
+    --border:      #e2e8f0;
+    --bg:          #f1f5f9;
+    --white:       #ffffff;
+    --radius:      12px;
+    --radius-sm:   8px;
+    --shadow:      0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+/* ---------- Page layout: footer always at the bottom ---------- */
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+}
+
+.page {
+    flex: 1;               /* pushes the footer down */
+    display: flow-root;    /* contains the floated sidebar */
+    padding: 20px;
+}
+
+a { color: var(--blue); }
+a:hover { color: var(--blue-hover); }
+
+h1, h2, h3 { color: var(--blue-dark); }
+
+main > h1:first-child,
+main > .success:first-child + h1,
+main > p:first-child { margin-top: 0; }
+
+/* ---------- Header ---------- */
+header {
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 16px 30px;
+    box-shadow: var(--shadow);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.brand {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;             /* equal spacing between every nav button */
+}
+
+.nav-links ul {
+    display: contents;     /* admin links line up with the others */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li { display: contents; }
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-weight: 600;
+    transition: background 0.15s;
+}
+
+.nav-links a:hover { background: var(--blue); color: var(--white); }
+
+.welcome { color: var(--blue-light); padding: 0 6px; }
+
+/* ---------- Search bar ---------- */
+.search { margin-top: 14px; }
+
+.search form { display: flex; gap: 10px; max-width: 480px; }
+
+.search input {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 999px;
+    font-size: 15px;
+}
+
+/* ---------- Buttons (all look the same) ---------- */
+button,
+a.button,
+a.btn,
+input[type="submit"] {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--white) !important;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 20px !important;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+button:hover,
+a.button:hover,
+a.btn:hover { background: var(--blue-hover); }
+
+button:active,
+a.button:active { transform: translateY(1px); }
+
+/* ---------- Forms ---------- */
+main {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 12px !important;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--white);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px var(--blue-light);
+}
+
+label { font-weight: 600; }
+
+/* Inline add/edit forms on the brand & category pages */
+main form:not(#registerForm):not(#productForm):not([action$="login_action.php"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+main form:not(#registerForm):not(#productForm):not([action$="login_action.php"]) input[type="text"] {
+    width: auto;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search form input[type="text"] { width: auto; }
+
+/* ---------- Messages ---------- */
+.error,
+.success,
+.js-error {
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin: 15px 0;
+}
+
+.error   { background: #fee2e2; color: #991b1b; }
+.success { background: #dcfce7; color: #166534; }
+.js-error { background: #fee2e2; color: #991b1b !important; padding: 6px 10px; }
+
+.page > .error { margin: 0 0 15px; }
+
+/* ---------- Tables (admin pages) ---------- */
+table {
+    width: 100%;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--white);
+}
+
+th, td {
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 12px 14px;
+    text-align: left;
+}
+
+th { background: var(--blue); color: var(--white); }
+tr:last-child td { border-bottom: none !important; }
+tbody tr:hover { background: #f8fafc; }
+td img { border-radius: var(--radius-sm); }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    width: 220px;
+    float: left;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+}
+
+.sidebar h3 { margin-top: 0; font-size: 16px; }
+.sidebar h3 + * { margin-bottom: 20px; }
+.sidebar ul { list-style: none; padding: 0; margin: 0 0 20px; }
+.sidebar li { margin-bottom: 4px; }
+
+.sidebar a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+}
+
+.sidebar a:hover { background: var(--blue-light); color: var(--blue-dark); }
+
+main.with-sidebar { margin-left: 250px; }
+
+/* ---------- Product grid & cards ---------- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    text-align: center;
+    background: var(--white);
+    transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.product-card:hover { box-shadow: 0 6px 18px rgba(29, 78, 216, 0.18); transform: translateY(-2px); }
+
+.product-card img,
+.product-card .no-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    background: #f2f2f2;
+}
+
+.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    border-radius: var(--radius-sm);
+    background: #f2f2f2;
+}
+
+.product-card h3 { font-size: 16px; margin: 10px 0 5px; }
+
+.price { font-weight: 800; color: var(--blue); font-size: 17px; }
+
+.card-links {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* two equal buttons */
+    gap: 8px;
+}
+
+.card-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    margin: 0;
+    padding: 8px 6px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    border: 2px solid var(--blue);
+}
+
+.card-links a:first-child { color: var(--blue); background: var(--white); }
+.card-links a:last-child  { color: var(--white); background: var(--blue); }
+.card-links a:hover { background: var(--blue-hover); border-color: var(--blue-hover); color: var(--white); }
+
+/* ---------- Single product ---------- */
+.product-detail {
+    display: grid;
+    grid-template-columns: minmax(200px, 350px) 1fr;
+    gap: 30px;
+}
+
+.product-detail img,
+.product-detail .no-image {
+    width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background: var(--blue-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p { margin: 0; }
+
+/* ---------- Phones ---------- */
+@media (max-width: 700px) {
+    header { padding: 14px 16px; }
+    .page { padding: 16px; }
+    .sidebar { float: none; width: auto; margin-bottom: 20px; }
+    main.with-sidebar { margin-left: 0; }
+    .product-detail { grid-template-columns: 1fr; }
+    table { display: block; overflow-x: auto; }
+}

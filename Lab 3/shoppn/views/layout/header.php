@@ -14,162 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoppn</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background: #222;
-            color: white;
-            padding: 15px 30px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: inline;
-        }
-
-        nav li {
-            display: inline;
-        }
-
-        .search {
-            margin-top: 15px;
-        }
-
-        .search input {
-            padding: 8px;
-            width: 250px;
-        }
-
-        .search button {
-            padding: 8px 15px;
-        }
-
-        .error {
-            background: #f8d7da;
-            color: #842029;
-            padding: 10px;
-            margin: 15px;
-        }
-
-        /* Sidebar + product grid (Task 10) */
-        .sidebar {
-            width: 220px;
-            padding: 20px;
-            float: left;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 6px;
-        }
-
-        .sidebar a {
-            color: #222;
-        }
-
-        main.with-sidebar {
-            margin-left: 260px;
-            padding: 20px 30px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .product-card img,
-        .product-card .no-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #f2f2f2;
-        }
-
-        .no-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-        }
-
-        .product-card h3 {
-            font-size: 16px;
-            margin: 10px 0 5px;
-        }
-
-        .price {
-            font-weight: bold;
-            color: #0a7c3a;
-        }
-
-        .card-links a {
-            margin: 0 6px;
-        }
-
-        .product-detail {
-            display: grid;
-            grid-template-columns: minmax(200px, 350px) 1fr;
-            gap: 30px;
-        }
-
-        .product-detail img,
-        .product-detail .no-image {
-            width: 100%;
-            min-height: 250px;
-            object-fit: cover;
-        }
-
-        a.button {
-            display: inline-block;
-            background: #222;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-        }
-
-        @media (max-width: 700px) {
-            .sidebar { float: none; width: auto; }
-            main.with-sidebar { margin-left: 0; }
-            .product-detail { grid-template-columns: 1fr; }
-        }
-
-        .success {
-            background: #d1e7dd;
-            color: #0f5132;
-            padding: 10px;
-            margin: 15px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
 </head>
 
 <body>
@@ -178,11 +23,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <nav>
 
-        <div>
-            <strong>Shoppn</strong>
-        </div>
+        <a class="brand" href="<?= BASE_URL ?>/index.php">Shoppn</a>
 
-        <div>
+        <div class="nav-links">
             <a href="<?= BASE_URL ?>/index.php">Home</a>
 
             <?php if (is_admin()): ?>
@@ -195,8 +38,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <?php if (is_logged_in()): ?>
 
-                <span>
-                    Welcome,
+                <span class="welcome">
+                    Hi,
                     <?= htmlspecialchars(
                         $_SESSION['customer_name'] ?? 'User',
                         ENT_QUOTES,
@@ -226,6 +69,8 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
 
 </header>
+
+<div class="page">
 
 <?php
 
