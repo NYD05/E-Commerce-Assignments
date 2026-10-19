@@ -2,8 +2,21 @@
 
 require_once __DIR__ . '/../../core/core.php';
 
+require_once __DIR__ . '/../../controllers/CartController.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
+// Cart summary for the header bar (Task 11). Guests have a cart too — it is keyed by IP.
+$cartCount = 0;
+$cartTotal = 0.0;
+try {
+    $headerCart = new CartController();
+    $cartCount  = $headerCart->getCartCount(get_ip());
+    $cartTotal  = $headerCart->getCartTotal(get_ip());
+} catch (Throwable $e) {
+    error_log($e->getMessage()); // never let the cart bar break the page
 }
 
 ?>
@@ -68,6 +81,15 @@ if (session_status() === PHP_SESSION_NONE) {
         </form>
     </div>
 
+    <div class="cart-bar">
+        <strong>Shopping Cart</strong> &mdash;
+        Total Items: <span class="cart-count"><?= (int)$cartCount ?></span>
+        <span class="sep">|</span>
+        Total Price: <span class="cart-total">GH₵ <?= number_format($cartTotal, 2) ?></span>
+        <span class="sep">|</span>
+        <a href="<?= BASE_URL ?>/views/cart.php">Go to Cart</a>
+    </div>
+
 </header>
 
 <div class="page">
@@ -80,6 +102,14 @@ if (isset($_SESSION['error'])) {
         . '</div>';
 
     unset($_SESSION['error']);
+}
+
+if (isset($_SESSION['success'])) {
+    echo '<div class="success page-message">'
+        . htmlspecialchars($_SESSION['success'], ENT_QUOTES, 'UTF-8')
+        . '</div>';
+
+    unset($_SESSION['success']);
 }
 
 ?>

@@ -347,6 +347,44 @@ footer {
 
 footer p { margin: 0; }
 
+/* ---------- Cart summary bar (header) ---------- */
+.cart-bar {
+    margin-top: 12px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.cart-bar .sep { opacity: 0.5; }
+.cart-bar a { color: var(--white); font-weight: 700; }
+.cart-bar a:hover { color: var(--blue-light); }
+.cart-count, .cart-total { font-weight: 700; }
+
+.page > .success.page-message { margin: 0 0 15px; }
+
+/* ---------- Cart page ---------- */
+.cart-table td { vertical-align: middle; }
+.cart-product { display: flex; align-items: center; gap: 12px; }
+.cart-product img { width: 60px; height: 60px; object-fit: cover; }
+.cart-no-image { width: 60px; height: 60px; font-size: 11px; }
+
+input[type="text"].qty-input { width: 70px; text-align: center; }
+
+.subtotal-row td { font-weight: 800; color: var(--blue-dark); background: var(--blue-light); }
+.subtotal-row td:first-child { text-align: right; }
+
+.cart-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+button.btn-danger { background: #dc2626; }
+button.btn-danger:hover { background: #b91c1c; }
+a.button.btn-secondary { background: var(--white); color: var(--blue) !important; box-shadow: inset 0 0 0 2px var(--blue); }
+a.button.btn-secondary:hover { background: var(--blue-light); }
+
 /* ---------- Phones ---------- */
 @media (max-width: 700px) {
     header { padding: 14px 16px; }

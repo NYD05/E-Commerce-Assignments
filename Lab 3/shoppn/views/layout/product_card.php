@@ -16,6 +16,6 @@
 
     <p class="card-links">
         <a href="<?= BASE_URL ?>/views/single_product.php?pro_id=<?= (int)$p['product_id'] ?>">Details</a>
-        <a href="<?= BASE_URL ?>/index.php?add_cart=<?= (int)$p['product_id'] ?>">Add to Cart</a>
+        <a href="<?= BASE_URL ?>/actions/add_to_cart_action.php?add_cart=<?= (int)$p['product_id'] ?>">Add to Cart</a>
     </p>
 </div>

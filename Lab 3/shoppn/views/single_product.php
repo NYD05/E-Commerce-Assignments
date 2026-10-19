@@ -54,7 +54,7 @@ require_once __DIR__ . '/layout/sidebar.php';
                 <p><strong>Keywords:</strong> <?= h($product['product_keywords']) ?></p>
             <?php endif; ?>
 
-            <p><a class="button" href="<?= BASE_URL ?>/index.php?add_cart=<?= (int)$product['product_id'] ?>">Add to Cart</a></p>
+            <p><a class="button" href="<?= BASE_URL ?>/actions/add_to_cart_action.php?add_cart=<?= (int)$product['product_id'] ?>">Add to Cart</a></p>
         </div>
     </div>
 
